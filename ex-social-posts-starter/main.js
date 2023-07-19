@@ -38,7 +38,7 @@ const posts = [
         "media": "https://unsplash.it/600/400?image=24",
         "author": {
             "name": "Luca Formicola",
-            "image": null
+            "image": null //mi basterebbe mettere una foto qua "https://unsplash.it/300/300?image=20" 
         },
         "likes": 56,
         "created": "2021-04-03"
@@ -58,46 +58,54 @@ const posts = [
 
 
 
-
-// posts.forEach((post) => {
-
-// });
-
 const container = document.getElementById("container");
 
-posts.forEach((post) =>{
+posts.forEach((post) => {
     const postCard = document.createElement("div");
     postCard.classList.add("post");
 
 
-postCard.innerHtml = `<div class="post__header">
-                        <div class="post-meta">                    
-                            <div class="post-meta__icon">
-                                <img class="profile-pic" src="Qui--------------" alt="QUi-------------------------">                    
-                            </div>
-                            <div class="post-meta__data">
-                                <div class="post-meta__author">QUi----------------</div>
-                                <div class="post-meta__time">4 mesi fa</div>
-                            </div>                    
-                        </div>
-                        </div>
-                        <div class="post__text">
-                        <div class="post__image">
-                        <img src="Quii--------------------</div>" alt="">
-                        </div>
-                        <div class="post__footer">
-                        <div class="likes js-likes">
-                            <div class="likes__cta">
-                                <a class="like-button  js-like-button" href="#" data-postid="1">
-                                    <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
-                                    <span class="like-button__label">Mi Piace</span>
-                                </a>
-                            </div>
-                            <div class="likes__counter">
-                                Piace a <b id="like-counter-1" class="js-likes-counter">QUI-------------------------</b> persone
-                            </div>
-                        </div> 
-                        </div>`
+    postCard.innerHTML = `<div class="post"              //mi da errore qua pero va , 
+    <div class="post__header">
+    <div class="post-meta">                    
+        <div class="post-meta__icon">
+            <img class="profile-pic" src="${post.author.image}" alt="${post.author.name}">                    
+        </div>
+        <div class="post-meta__data">
+            <div class="post-meta__author">${post.author.name}</div>
+            <div class="post-meta__time">${post.created}</div>
+        </div>                    
+    </div>
+    </div>
+    <div class="post__text">${post.content}
+    <div class="post__image">
+    <img src="${post.media}" alt=""> //e quei 
+    </div>
+    <div class="post__footer">
+    <div class="likes js-likes">
+        <div class="likes__cta">
+            <a class="like-button  js-like-button" href="#" data-postid="${post.id}">
+                <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                <span class="like-button__label">Mi Piace</span>             <!--qui ce il like-->
+            </a>
+        </div>
+        <div class="likes__counter">  
+            Piace a <b id="like-counter-${post.id}" class="js-likes-counter">${post.likes}</b> persone
+        </div>
+    </div> 
+    </div>
+</div>`;
 
-container.appendChild(postCard);
+
+    //problema mi prende le img della foto profilo ma non quelle del post 
+
+    container.appendChild(postCard);
 });
+
+//-----------------------------
+// postCard.qurySelector(".like-button").addEventListener("click", function(){
+//     postCard.qurySelector(".js-likes-counter").texcontent =
+// });
+
+
+//
